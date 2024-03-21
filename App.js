@@ -1,6 +1,6 @@
 import { View } from "react-native";
 
-import AppText from "./app/components/AppText";
+import Button from "./app/components/Button";
 
 export default function App() {
   return (
@@ -11,7 +11,7 @@ export default function App() {
         alignItems: 'center'
       }}
     >
-      <AppText>I love React Native!</AppText>
+      <Button>Login</Button>
     </View>
   );
 }
