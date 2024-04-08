@@ -4,12 +4,12 @@ import { StyleSheet, Text, TouchableHighlight, View } from 'react-native';
 import colors from '../../config/colors'
 import borderRadius from '../../config/borderRadius'
 
-function Button({children}) {
+function Button({children, color = 'primary'}) {
   const handlePress = () => console.log('pressed!');
 
   return (
     <TouchableHighlight onPress={handlePress} style={styles.container}>
-      <View style={styles.button}>
+      <View style={[styles.button, styles[color]]}>
         <Text style={styles.text}>{children}</Text>
       </View>
     </TouchableHighlight>
@@ -19,10 +19,15 @@ function Button({children}) {
 export default Button;
 
 const styles = StyleSheet.create({
+  primary: {
+    backgroundColor: colors.primary,
+  },
+  secondary: {
+    backgroundColor: colors.secondary,
+  },
   button: {
     borderRadius: borderRadius.sm,
-    backgroundColor: colors.primary,
-    padding: 10,
+    padding: 15,
     alignItems: 'center'
   },
   container: {
