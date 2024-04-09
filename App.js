@@ -1,7 +1,7 @@
-import ListingsScreen from "./app/screens/ListingsScreen";
+import ListingDetailsScreen from "./app/screens/ListingDetailsScreen";
 
 export default function App() {
   return (
-    <ListingsScreen />
+    <ListingDetailsScreen />
   );
 }
