@@ -26,12 +26,12 @@ const styles = StyleSheet.create({
     backgroundColor: colors.secondary,
   },
   button: {
-    borderRadius: borderRadius.sm,
+    borderRadius: borderRadius.md,
     padding: 15,
     alignItems: 'center'
   },
   container: {
-    borderRadius: borderRadius.sm,
+    borderRadius: borderRadius.md,
     width: '100%',
   },
   text: {
