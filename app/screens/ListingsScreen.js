@@ -1,11 +1,11 @@
-import { SafeAreaView, StyleSheet, ScrollView } from 'react-native'
+import { View, StyleSheet, ScrollView } from 'react-native'
 import React from 'react'
 
 import Card from '../components/Card';
 
 function ListingsScreen() {
   return (
-    <SafeAreaView style={styles.container}>
+    <View style={styles.container}>
       <ScrollView style={styles.listArea}>
         <Card
           title="Red jacket for sale!"
@@ -13,7 +13,7 @@ function ListingsScreen() {
           image={require('../assets/jacket.jpg')}
         />
       </ScrollView>
-    </SafeAreaView>
+    </View>
   )
 }
 
@@ -22,7 +22,8 @@ const styles = StyleSheet.create({
     backgroundColor: '#f8f4f4',
   },
   listArea: {
-    padding: 15
+    padding: 20,
+    paddingTop: 100
   }
 })
 

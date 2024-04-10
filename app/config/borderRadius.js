@@ -1,5 +1,5 @@
 export default {
-  sm: 10,
+  sm: 15,
   md: 25,
   full: 50
 }
