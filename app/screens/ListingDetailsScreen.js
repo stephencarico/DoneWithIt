@@ -3,6 +3,7 @@ import React from 'react'
 import colors from '../config/colors'
 
 import AppText from '../components/AppText'
+import ListItem from '../components/ListItem'
 
 function ListingDetailsScreen() {
   return (
@@ -11,12 +12,12 @@ function ListingDetailsScreen() {
       <View style={styles.detailsContainer}>
         <AppText style={styles.title}>Red jacket for sale</AppText>
         <AppText style={styles.price}>$100</AppText>
-        <View style={styles.profile}>
-          <Image source={require('../assets/mosh.jpg')} style={styles.avatar} />
-          <View>
-            <AppText>Mosh Hamedani</AppText>
-            <AppText style={styles.profileListingsText}>5 Listings</AppText>
-          </View>
+        <View style={styles.userContainer}>
+          <ListItem
+            image={require('../assets/mosh.jpg')}
+            title="Mosh Hamedani"
+            subTitle="5 Listings"
+          />
         </View>
       </View>
     </View>
@@ -24,25 +25,12 @@ function ListingDetailsScreen() {
 }
 
 const styles = StyleSheet.create({
-  avatar: {
-    height: 50,
-    width: 50,
-    borderRadius: '100%'
-  },
   detailsContainer: {
     padding: 20
   },
   image: {
     height: 300,
     width: '100%',
-  },
-  profile: {
-    flexDirection: 'row',
-    gap: 10,
-    paddingTop: 25
-  },
-  profileListingsText: {
-    fontWeight: '200'
   },
   price: {
     color: colors.secondary,
@@ -53,6 +41,9 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 24,
     fontWeight: '500',
+  },
+  userContainer: {
+    marginVertical: 40
   }
 })
 
