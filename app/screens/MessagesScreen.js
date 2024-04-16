@@ -5,6 +5,7 @@ import React from 'react'
 import ListItem from '../components/ListItem'
 import Screen from '../components/Screen'
 import ListItemSeparator from '../components/ListItemSeparator'
+import ListItemDeleteAction from '../components/ListItemDeleteAction'
 
 const messages = [
   {
@@ -33,6 +34,7 @@ const MessagesScreen = () => {
             subTitle={item.description}
             image={item.image}
             onPress={() => console.log('Message selected: ', item)}
+            renderRightActions={ListItemDeleteAction}
           />
         }
         ItemSeparatorComponent={<ListItemSeparator />}
