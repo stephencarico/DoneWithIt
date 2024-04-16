@@ -2,6 +2,7 @@ import { StyleSheet, FlatList, View } from 'react-native'
 import React from 'react'
 import Screen from '../components/Screen'
 import ListItem from '../components/ListItem'
+import Icon from '../components/Icon'
 import colors from '../config/colors'
 import ListItemSeparator from '../components/ListItemSeparator'
 
@@ -45,7 +46,7 @@ export default function MyAccountScreen() {
             renderItem={({ item }) =>
               <ListItem
                 title={item.title}
-                icon={item.icon}
+                ImageComponent={<Icon name={item.icon.name} backgroundColor={item.icon.color} />}
               />
             }
             ItemSeparatorComponent={ListItemSeparator}
@@ -55,7 +56,7 @@ export default function MyAccountScreen() {
         <View style={styles.settingsList}>
           <ListItem
             title='Log Out'
-            icon={{ name: 'logout', color: colors.warning }}
+            ImageComponent={<Icon name='logout' backgroundColor={colors.warning} />}
           />
         </View>
       </View>
