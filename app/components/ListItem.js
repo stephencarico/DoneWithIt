@@ -14,7 +14,7 @@ function ListItem({ image, onPress, title, renderRightActions, subTitle }) {
       >
         <View style={styles.container}>
           <Image source={image} style={styles.image} />
-          <View>
+          <View style={styles.textContainer}>
             <AppText style={styles.title}>{title}</AppText>
             <AppText style={styles.subTitle}>{subTitle}</AppText>
           </View>
@@ -37,6 +37,9 @@ const styles = StyleSheet.create({
   },
   subTitle: {
     color: colors.medium
+  },
+  textContainer: {
+    justifyContent: 'center'
   },
   title: {
     fontWeight: '500'
