@@ -17,7 +17,6 @@ function ListItem({ icon, image, onPress, title, renderRightActions, subTitle })
           { icon
             ? <Icon
               name={icon.name}
-              size={20}
               backgroundColor={icon.color}
               iconColor={colors.white}
             />
