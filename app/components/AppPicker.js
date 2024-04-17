@@ -7,14 +7,14 @@ import PickerItem from './PickerItem'
 import Screen from './Screen'
 import defaultStyles from '../config/styles'
 
-const AppPicker = ({ icon, items, placeholder }) => {
+const AppPicker = ({ icon, items, onSelectItem, selectedItem, placeholder }) => {
   const [modalVisible, setModalVisible] = useState(false);
   return (
     <>    
       <TouchableWithoutFeedback onPress={() => setModalVisible(true)}>
         <View style={styles.container}>
           {icon && <MaterialCommunityIcons name={icon} size={20} color={defaultStyles.colors.medium} style={styles.icon} /> }
-          <AppText style={styles.text}>{placeholder}</AppText>
+          <AppText style={styles.text}>{selectedItem ? selectedItem.label : placeholder}</AppText>
           {icon && <MaterialCommunityIcons name='chevron-down' size={20} color={defaultStyles.colors.medium} /> }
         </View>
       </TouchableWithoutFeedback>
@@ -27,7 +27,10 @@ const AppPicker = ({ icon, items, placeholder }) => {
             renderItem={({ item }) => 
               <PickerItem
                 label={item.label}
-                onPress={() => console.log(item)}
+                onPress={() => {
+                  setModalVisible(false);
+                  onSelectItem(item);
+                }}
               />
           }
           />
