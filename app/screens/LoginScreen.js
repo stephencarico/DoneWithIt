@@ -4,8 +4,6 @@ import { Formik } from 'formik'
 import * as Yup from 'yup'
 
 import AppButton from '../components/AppButton'
-import AppTextInput from '../components/AppTextInput'
-import ErrorMessage from '../components/ErrorMessage'
 import Screen from '../components/Screen'
 import AppFormField from '../components/AppFormField'
 
