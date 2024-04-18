@@ -1,10 +1,10 @@
-import { Image, StyleSheet, Text, View } from 'react-native'
+import { Image, StyleSheet, View } from 'react-native'
 import React from 'react'
 
-import AppText from '../AppText'
+import AppText from './AppText'
 
-import colors from '../../config/colors'
-import borderRadius from '../../config/borderRadius'
+import colors from '../config/colors'
+import borderRadius from '../config/borderRadius'
 
 function Card({ image, subTitle, title }) {
   return (
