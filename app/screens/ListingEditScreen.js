@@ -3,17 +3,23 @@ import React from 'react'
 import * as Yup from 'yup'
 
 import Screen from '../components/Screen'
-import { AppForm, AppFormField, AppFormPicker, SubmitButton } from '../components/forms'
+import {
+  AppForm,
+  AppFormField,
+  AppFormPicker,
+  SubmitButton
+} from '../components/forms'
 
 const categories = [
-  { label: 'Food', value: 1 },
-  { label: 'Furniture', value: 2 },
+  { label: 'Furniture', value: 1 },
+  { label: 'Clothing', value: 2 },
+  { label: 'Camera', value: 3 },
 ]
 
-const listingSchema = Yup.object({
+const validationSchema = Yup.object({
   title: Yup.string().required().min(1).label('Title'),
   price: Yup.number().required().min(1).max(10000).label('Price'),
-  category: Yup.object().required().label('Category'),
+  category: Yup.object().required().nullable().label('Category'),
   description: Yup.string().label('Description'),
 })
 
@@ -21,26 +27,36 @@ const ListingEditScreen = () => {
   return (
     <Screen style={styles.container}>
       <AppForm
-        initialValues={{  title: '', price: 0, category: null, description: '' }}
+        initialValues={{
+          title: '',
+          price: '',
+          category: null,
+          description: ''
+        }}
         onSubmit={form => console.log(form)}
-        validationSchema={listingSchema}
+        validationSchema={validationSchema}
       >
         <AppFormField
+          maxLength={255}
           name='title'
           placeholder='Title'
         />
         <AppFormField
+          keyboardType='numeric'
+          maxLength={8}
           name='price'
           placeholder='Price'
-          keyboardType='numeric'
         />
         <AppFormPicker
-          name='category'
           items={categories}
+          name='category'
           placeholder='Category'
         />
         <AppFormField
+          maxLength={255}
+          multiline
           name='description'
+          numberOfLines={3}
           placeholder='Description'
         />
         <SubmitButton title='Post' />
