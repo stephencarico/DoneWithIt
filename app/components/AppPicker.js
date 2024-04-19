@@ -27,15 +27,20 @@ const AppPicker = ({ icon, items, onSelectItem, selectedItem, placeholder, width
           <FlatList
             data={items}
             keyExtractor={item => item.value}
+            numColumns={3}
             renderItem={({ item }) => 
-              <PickerItem
-                label={item.label}
-                onPress={() => {
-                  setModalVisible(false);
-                  onSelectItem(item);
-                }}
-              />
-          }
+              <View style={{ flex: 1 }}>
+                <PickerItem
+                  label={item.label}
+                  icon={item.icon}
+                  backgroundColor={item.backgroundColor}
+                  onPress={() => {
+                    setModalVisible(false);
+                    onSelectItem(item);
+                  }}
+                />
+              </View>
+            }
           />
         </Screen>
       </Modal>
