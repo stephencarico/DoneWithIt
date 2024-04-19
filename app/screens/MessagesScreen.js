@@ -35,6 +35,7 @@ const MessagesScreen = () => {
         renderItem={({ item }) => 
           <ListItem
             title={item.title}
+            showChevrons
             subTitle={item.description}
             image={item.image}
             onPress={() => console.log('Message selected: ', item)}
