@@ -10,9 +10,11 @@ import defaultStyles from '../config/styles'
 const AppPicker = ({
   icon,
   items,
+  numberOfColumns = 1,
   onSelectItem,
-  selectedItem,
+  PickerItemComponent = PickerItem,
   placeholder,
+  selectedItem,
   width = '100%'
 }) => {
   const [modalVisible, setModalVisible] = useState(false);
@@ -34,19 +36,15 @@ const AppPicker = ({
           <FlatList
             data={items}
             keyExtractor={item => item.value}
-            numColumns={3}
+            numColumns={numberOfColumns}
             renderItem={({ item }) => 
-              <View style={{ flex: 1 }}>
-                <PickerItem
-                  label={item.label}
-                  icon={item.icon}
-                  backgroundColor={item.backgroundColor}
-                  onPress={() => {
-                    setModalVisible(false);
-                    onSelectItem(item);
-                  }}
-                />
-              </View>
+              <PickerItemComponent
+                item={item}
+                onPress={() => {
+                  setModalVisible(false);
+                  onSelectItem(item);
+                }}
+              />
             }
           />
         </Screen>
