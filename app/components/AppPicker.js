@@ -7,7 +7,14 @@ import PickerItem from './PickerItem'
 import Screen from './Screen'
 import defaultStyles from '../config/styles'
 
-const AppPicker = ({ icon, items, onSelectItem, selectedItem, placeholder, width }) => {
+const AppPicker = ({
+  icon,
+  items,
+  onSelectItem,
+  selectedItem,
+  placeholder,
+  width = '100%'
+}) => {
   const [modalVisible, setModalVisible] = useState(false);
   return (
     <>    
@@ -55,7 +62,6 @@ const styles = StyleSheet.create({
     backgroundColor: defaultStyles.colors.light,
     borderRadius: 25,
     flexDirection: 'row',
-    width: '100%',
     padding: 15,
     marginVertical: 10
   },
