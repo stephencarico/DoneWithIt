@@ -1,5 +1,5 @@
 import React from 'react';
-import { Image, TouchableOpacity, StyleSheet } from 'react-native';
+import { Image, TouchableWithoutFeedback, StyleSheet, View } from 'react-native';
 import { useEffect } from 'react';
 import * as ImagePicker from 'expo-image-picker';
 import { MaterialCommunityIcons } from '@expo/vector-icons'
@@ -21,7 +21,10 @@ function ImageInput({ imageUri, onChangeImage }) {
       if (imageUri) {
         onChangeImage(imageUri);
       } else {
-        const result = await ImagePicker.launchImageLibraryAsync();
+        const result = await ImagePicker.launchImageLibraryAsync({
+          mediaTypes: ImagePicker.MediaTypeOptions.Images,
+          quality: 0.5
+        });
         if (!result.canceled)
           onChangeImage(result.assets[0].uri);
       }
@@ -31,13 +34,15 @@ function ImageInput({ imageUri, onChangeImage }) {
   }
 
   return (
-    <TouchableOpacity style={styles.container} onPress={selectImage}>
-      {
-        imageUri
-          ? <Image source={{ uri: imageUri }} style={styles.image} />
-          : <MaterialCommunityIcons name='camera' size={35} color={defaultStyles.colors.medium} />
-      }
-    </TouchableOpacity>
+    <TouchableWithoutFeedback onPress={selectImage}>      
+      <View style={styles.container}>
+        {
+          imageUri
+            ? <Image source={{ uri: imageUri }} style={styles.image} />
+            : <MaterialCommunityIcons name='camera' size={35} color={defaultStyles.colors.medium} />
+        }
+      </View>
+    </TouchableWithoutFeedback>
   );
 }
 
