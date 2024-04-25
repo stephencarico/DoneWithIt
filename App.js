@@ -1,86 +1,27 @@
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
-import { Button, Text } from 'react-native'
 import { createStackNavigator } from '@react-navigation/stack'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
-import { NavigationContainer, useNavigation } from '@react-navigation/native'
-import { MaterialCommunityIcons } from '@expo/vector-icons'
+import { NavigationContainer } from '@react-navigation/native'
 
-import Screen from './app/components/Screen';
-
-const Link = () => {
-  const navigation = useNavigation();
-
-  return (
-    <Button
-      title="Click"
-      onPress={() => navigation.navigate('TweetDetails', { id: 1 })}
-    />
-  )
-}
-
-const Tweets = () => (
-  <Screen>
-    <Text>Tweets</Text>
-    <Link />
-  </Screen>
-)
-
-const TweetDetails = ({ route }) => (
-  <Screen>
-    <Text>Tweet Details {route.params.id}</Text>
-  </Screen>
-)
+import WelcomeScreen from './app/screens/WelcomeScreen'
+import LoginScreen from './app/screens/LoginScreen'
+import RegisterScreen from './app/screens/RegisterScreen';
+import colors from './app/config/colors'
 
 const Stack = createStackNavigator();
-const StackNavigator = () => (
-  <Stack.Navigator>
-    <Stack.Screen
-      name="Tweets"
-      component={Tweets}
-      options={{
-        headerStyle: { backgroundColor: 'dodgerblue' },
-        headerTintColor: 'white',
-      }}
-    />
-    <Stack.Screen
-      name="TweetDetails"
-      component={TweetDetails}
-      options={{
-        headerStyle: { backgroundColor: 'tomato' },
-        headerTintColor: 'white',
-      }}
-    />
+const AuthNavigator = () => (
+  <Stack.Navigator screenOptions={{ cardStyle: { backgroundColor: colors.white } }}>
+    <Stack.Screen name='Welcome' component={WelcomeScreen} options={{ headerShown: false }} />
+    <Stack.Screen name='Login' component={LoginScreen} />
+    <Stack.Screen name='Register' component={RegisterScreen} />
   </Stack.Navigator>
-)
-
-const Account = () => <Screen><Text>Account</Text></Screen>
-
-const Tab = createBottomTabNavigator();
-TabNavigator = () => (
-  <Tab.Navigator
-    screenOptions={{
-      tabBarActiveBackgroundColor: 'tomato',
-      tabBarActiveTintColor: 'white',
-      tabBarInactiveBackgroundColor: '#eee',
-      tabBarInactiveTintColor: 'black'
-    }}
-  >
-    <Tab.Screen
-      name="Feed"
-      component={Tweets}
-      options={{
-        tabBarIcon: ({ size, color }) => <MaterialCommunityIcons name='home' size={size} color={color} />
-      }}
-    />
-    <Tab.Screen name="Account" component={Account} />
-  </Tab.Navigator>
 )
 
 export default function App() {
   return (
     <GestureHandlerRootView style={{ flex: 1 }}>
       <NavigationContainer>
-        <TabNavigator />
+        <AuthNavigator />
       </NavigationContainer>
     </GestureHandlerRootView>
   );
