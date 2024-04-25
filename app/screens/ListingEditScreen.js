@@ -1,6 +1,7 @@
 import { StyleSheet } from 'react-native'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import * as Yup from 'yup'
+import * as Location from 'expo-location';
 
 import CategoryPickerItem from '../components/CategoryPickerItem'
 import Screen from '../components/Screen'
@@ -33,6 +34,19 @@ const validationSchema = Yup.object({
 })
 
 const ListingEditScreen = () => {
+  const [location, setLocation] = useState(null);
+
+  useEffect(() => {
+    (async () => {
+      
+      let { status } = await Location.requestForegroundPermissionsAsync();
+      if (status !== 'granted') return;
+
+      let location = await Location.getCurrentPositionAsync({});
+      setLocation(location);
+    })();
+  }, []);
+
   return (
     <Screen style={styles.container}>
       <AppForm
@@ -43,7 +57,7 @@ const ListingEditScreen = () => {
           category: null,
           description: ''
         }}
-        onSubmit={form => console.log(form)}
+        onSubmit={form => console.log({...form, location})}
         validationSchema={validationSchema}
       >
         <FormImagePicker
