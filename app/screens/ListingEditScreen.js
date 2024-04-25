@@ -30,7 +30,7 @@ const validationSchema = Yup.object({
   price: Yup.number().required().min(1).max(10000).label('Price'),
   category: Yup.object().required().nullable().label('Category'),
   description: Yup.string().label('Description'),
-  images: Yup.array().required().min(1).label('Images'),
+  images: Yup.array().min(1, 'Please select at least one image.'),
 })
 
 const ListingEditScreen = () => {
@@ -51,18 +51,16 @@ const ListingEditScreen = () => {
     <Screen style={styles.container}>
       <AppForm
         initialValues={{
-          images: [],
           title: '',
           price: '',
           category: null,
-          description: ''
+          description: '',
+          images: [],
         }}
         onSubmit={form => console.log({...form, location})}
         validationSchema={validationSchema}
       >
-        <FormImagePicker
-          name='images'
-        />
+        <FormImagePicker name='images' />
         <AppFormField
           maxLength={255}
           name='title'
