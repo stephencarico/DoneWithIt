@@ -23,7 +23,8 @@ function ImageInputList({ imageUris, onAddImage, onRemoveImage }) {
 const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
-    gap: 10
+    gap: 10,
+    marginVertical: 10
   }
 });
 
