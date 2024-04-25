@@ -34,17 +34,17 @@ const validationSchema = Yup.object({
 })
 
 const ListingEditScreen = () => {
-  const [location, setLocation] = useState(null);
+  const [location, setLocation] = useState();
+
+  const getLocation = async () => {
+    const { status } = await Location.requestForegroundPermissionsAsync();
+    if (status !== 'granted') return;
+    const { coords: { latitude, longitude }} = await Location.getLastKnownPositionAsync();
+    setLocation({ latitude, longitude });
+  }
 
   useEffect(() => {
-    (async () => {
-      
-      let { status } = await Location.requestForegroundPermissionsAsync();
-      if (status !== 'granted') return;
-
-      let location = await Location.getCurrentPositionAsync({});
-      setLocation(location);
-    })();
+    getLocation()
   }, []);
 
   return (
