@@ -1,18 +1,18 @@
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import Screen from './app/components/Screen';
 import { useState } from 'react';
-import ImageInput from './app/components/ImageInput';
-import { Image } from 'react-native';
+import ImageInputList from './app/components/ImageInputList';
 
 export default function App() {
-  const [imageUri, setImageUri] = useState();
+  const [imageUris, setImageUris] = useState([]);
 
   return (
     <GestureHandlerRootView style={{ flex: 1 }}>
-      <Screen>
-        <ImageInput
-          imageUri={imageUri}
-          onChangeImage={uri => setImageUri(uri)}
+      <Screen style={{ padding: 10 }}>
+        <ImageInputList
+          imageUris={imageUris}
+          onAddImage={(newUri) => setImageUris([...imageUris, newUri])}
+          onRemoveImage={(newUri) => setImageUris(imageUris.filter(uri => uri !== newUri))}
         />
       </Screen>
     </GestureHandlerRootView>
