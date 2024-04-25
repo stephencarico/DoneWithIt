@@ -13,7 +13,7 @@ function FormImagePicker({ name }) {
       <ImageInputList
         imageUris={values[name]}
         onAddImage={(newUri) => setFieldValue(name, [...values[name], newUri])}
-        onRemoveImage={(newUri) => setImageUris(values[name].filter(uri => uri !== newUri))}
+        onRemoveImage={(newUri) => setFieldValue(name, values[name].filter(uri => uri !== newUri))}
       />
       <ErrorMessage error={errors[name]} visible={touched[name]} />
     </>
