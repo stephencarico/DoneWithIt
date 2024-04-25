@@ -7,13 +7,21 @@ import ErrorMessage from './ErrorMessage';
 
 function FormImagePicker({ name }) {
   const { setFieldValue, errors, touched, values } = useFormikContext();
+  const imageUris = values[name];
+
+  const handleAdd = uri => {
+    setFieldValue(name, [...imageUris, uri]);
+  }
+  const handleRemove = uri => {
+    setFieldValue(name, imageUris.filter(imageUri => imageUri !== uri))
+  }
 
   return (
     <>
       <ImageInputList
-        imageUris={values[name]}
-        onAddImage={(newUri) => setFieldValue(name, [...values[name], newUri])}
-        onRemoveImage={(newUri) => setFieldValue(name, values[name].filter(uri => uri !== newUri))}
+        imageUris={imageUris}
+        onAddImage={handleAdd}
+        onRemoveImage={handleRemove}
       />
       <ErrorMessage error={errors[name]} visible={touched[name]} />
     </>
