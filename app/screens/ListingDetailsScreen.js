@@ -3,7 +3,7 @@ import React from 'react'
 import colors from '../config/colors'
 
 import AppText from '../components/AppText'
-import ListItem from '../components/ListItem'
+import ListItem from '../components/lists/ListItem'
 
 function ListingDetailsScreen() {
   return (
