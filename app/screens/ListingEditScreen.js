@@ -11,6 +11,7 @@ import {
 } from '../components/forms'
 import FormImagePicker from '../components/forms/FormImagePicker'
 import useLocation from '../hooks/useLocation'
+import colors from '../config/colors'
 
 const categories = [
   { label: 'Furniture', icon: 'floor-lamp', backgroundColor: '#fc5c65', value: 1 },
@@ -86,6 +87,7 @@ export default ListingEditScreen
 
 const styles = StyleSheet.create({
   container: {
-    padding: 10
+    padding: 10,
+    backgroundColor: colors.white
   }
 })
