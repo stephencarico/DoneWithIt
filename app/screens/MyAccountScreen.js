@@ -1,5 +1,6 @@
 import React from 'react'
 import { StyleSheet, FlatList, View } from 'react-native'
+import { useNavigation } from '@react-navigation/native'
 
 import Screen from '../components/Screen'
 import Icon from '../components/Icon'
@@ -12,18 +13,22 @@ const menuItems = [
     icon: {
       backgroundColor: colors.primary,
       name: 'format-list-bulleted',
-    }
+    },
+    to: 'Listings'
   },
   {
     title: 'My Messages',
     icon: {
       backgroundColor: colors.secondary,
       name: 'email',
-    }
+    },
+    to: 'Messages'
   },
 ]
 
 export default function MyAccountScreen() {
+  const navigation = useNavigation();
+
   return (
     <Screen style={styles.screen}>
       <View style={styles.container}>
@@ -46,6 +51,7 @@ export default function MyAccountScreen() {
                   backgroundColor={item.icon.backgroundColor}
                 />
               }
+              onPress={() => navigation.navigate(item.to)}
             />
           }
           ItemSeparatorComponent={ListItemSeparator}
