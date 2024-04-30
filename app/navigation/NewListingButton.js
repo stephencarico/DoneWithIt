@@ -1,28 +1,28 @@
 import React from 'react';
 import { MaterialCommunityIcons } from '@expo/vector-icons'
-import { TouchableOpacity, StyleSheet, View } from'react-native';
+import { TouchableOpacity, StyleSheet } from'react-native';
 
 import colors from '../config/colors'
 
 function tabBarButton({ onPress }) {
   return (
     <TouchableOpacity onPress={onPress} style={styles.button}>
-      <MaterialCommunityIcons name='plus-circle' size={35} color={colors.white} />
+      <MaterialCommunityIcons name='plus-circle' size={40} color={colors.white} />
     </TouchableOpacity>
   );
 }
 
 const styles = StyleSheet.create({
   button: {
-    top: -15,
-    height: 65,
-    width: 65,
-    borderRadius: 65 / 2,
-    backgroundColor: colors.primary,
     alignItems: 'center',
-    justifyContent: 'center',
+    backgroundColor: colors.primary,
     borderColor: colors.white,
-    borderWidth: 5
+    borderRadius: 80 / 2,
+    borderWidth: 10,
+    bottom: 20,
+    justifyContent: 'center',
+    height: 80,
+    width: 80,
   },
 })
 
