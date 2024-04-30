@@ -1,26 +1,24 @@
 import { StyleSheet, Image } from 'react-native'
 import React from 'react'
-import { useNavigation } from '@react-navigation/native'
 import * as Yup from 'yup'
 
 import Screen from '../components/Screen'
 import { AppForm, AppFormField, SubmitButton } from '../components/forms'
+import routes from '../navigation/routes'
 
 const validationSchema = Yup.object().shape({
   email: Yup.string().required().email().label('Email'),
   password: Yup.string().required().min(4).label('Password')
 })
 
-const LoginScreen = () => {
-  const navigation = useNavigation();
-
+const LoginScreen = ({ navigation }) => {
   return (
     <Screen style={styles.container}>
       <Image source={require('../assets/logo-red.png')} style={styles.logo} />
 
       <AppForm
         initialValues={{ email: '', password: '' }}
-        onSubmit={() => navigation.navigate('Feed')}
+        onSubmit={() => navigation.navigate(routes.FEED)}
         validationSchema={validationSchema}
       >
         <AppFormField
