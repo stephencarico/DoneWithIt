@@ -14,7 +14,6 @@ const menuItems = [
       backgroundColor: colors.primary,
       name: 'format-list-bulleted',
     },
-    to: 'Listings'
   },
   {
     title: 'My Messages',
@@ -22,7 +21,7 @@ const menuItems = [
       backgroundColor: colors.secondary,
       name: 'email',
     },
-    to: 'Messages'
+    targetScreen: 'Messages'
   },
 ]
 
@@ -51,7 +50,7 @@ export default function MyAccountScreen() {
                   backgroundColor={item.icon.backgroundColor}
                 />
               }
-              onPress={() => navigation.navigate(item.to)}
+              onPress={() => navigation.navigate(item.targetScreen)}
             />
           }
           ItemSeparatorComponent={ListItemSeparator}
