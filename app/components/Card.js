@@ -1,4 +1,4 @@
-import { Image, StyleSheet, TouchableOpacity, View } from 'react-native'
+import { Image, StyleSheet, TouchableWithoutFeedback, View } from 'react-native'
 import React from 'react'
 
 import AppText from './AppText'
@@ -8,13 +8,15 @@ import borderRadius from '../config/borderRadius'
 
 function Card({ image, onPress, subTitle, title }) {
   return (
-    <TouchableOpacity style={styles.card} onPress={onPress}>
+    <TouchableWithoutFeedback onPress={onPress}>
+    <View style={styles.card}>
       <Image source={image} style={styles.image} />
       <View style={styles.detailsContainer}>
         <AppText style={styles.title}>{title}</AppText>
         <AppText style={styles.subTitle}>{subTitle}</AppText>
       </View>
-    </TouchableOpacity>
+    </View>
+    </TouchableWithoutFeedback>
   )
 }
 
