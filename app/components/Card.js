@@ -7,7 +7,6 @@ import colors from '../config/colors'
 import borderRadius from '../config/borderRadius'
 
 function Card({ imageUrl, onPress, subTitle, title }) {
-  console.log(imageUrl);
   return (
     <TouchableWithoutFeedback onPress={onPress}>
     <View style={styles.card}>
