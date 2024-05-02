@@ -6,11 +6,12 @@ import AppText from './AppText'
 import colors from '../config/colors'
 import borderRadius from '../config/borderRadius'
 
-function Card({ image, onPress, subTitle, title }) {
+function Card({ imageUrl, onPress, subTitle, title }) {
+  console.log(imageUrl);
   return (
     <TouchableWithoutFeedback onPress={onPress}>
     <View style={styles.card}>
-      <Image source={image} style={styles.image} />
+      <Image source={{ uri: imageUrl }} style={styles.image} />
       <View style={styles.detailsContainer}>
         <AppText style={styles.title}>{title}</AppText>
         <AppText style={styles.subTitle}>{subTitle}</AppText>
