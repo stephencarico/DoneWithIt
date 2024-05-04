@@ -31,10 +31,15 @@ const createListing = (listing) => {
     }
   });
 
-  // apisauce no longer automatically sets the Content-Type
-  const headers = { 'Content-Type': 'multipart/form-data' }
+  const config = {
+    // apisauce no longer automatically sets the Content-Type
+    headers: {
+      'Content-Type': 'multipart/form-data'
+    },
+    onUploadProgress: eventProgress => console.log(eventProgress.loaded)
+  }
 
-  return client.post(endpoint, data, { headers });
+  return client.post(endpoint, data, config);
 }
 
 export default {
