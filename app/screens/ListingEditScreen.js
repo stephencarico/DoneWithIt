@@ -1,4 +1,4 @@
-import { StyleSheet } from 'react-native'
+import { Alert, StyleSheet } from 'react-native'
 import * as Yup from 'yup'
 
 import CategoryPickerItem from '../components/CategoryPickerItem'
@@ -12,6 +12,8 @@ import {
 import FormImagePicker from '../components/forms/FormImagePicker'
 import useLocation from '../hooks/useLocation'
 import colors from '../config/colors'
+import useApi from '../hooks/useApi'
+import listingsApi from '../api/listings'
 
 const categories = [
   { label: 'Furniture', icon: 'floor-lamp', backgroundColor: '#fc5c65', value: 1 },
@@ -35,6 +37,12 @@ const validationSchema = Yup.object({
 
 const ListingEditScreen = () => {
   const location = useLocation();
+  const { error, request: createListing } = useApi(
+    listingsApi.createListing
+  )
+
+  if (error)
+    Alert.alert('Error', 'Listing was unable to be created');
 
   return (
     <Screen style={styles.container}>
@@ -46,7 +54,7 @@ const ListingEditScreen = () => {
           description: '',
           images: [],
         }}
-        onSubmit={form => console.log({...form, location})}
+        onSubmit={form => createListing({...form, location})}
         validationSchema={validationSchema}
       >
         <FormImagePicker name='images' />
