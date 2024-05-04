@@ -44,9 +44,12 @@ const ListingEditScreen = ({ navigation }) => {
   if (error)
     Alert.alert('Error', 'Listing was unable to be created');
 
-  const submitForm = (data) => {
+  const submitForm = (data, resetFn) => {
     createListing(data)
-      .then(() => navigation.navigate('Upload'));
+      .then(() => {
+        navigation.navigate('Upload');
+        resetFn();
+      });
   }
 
   return (
@@ -59,7 +62,7 @@ const ListingEditScreen = ({ navigation }) => {
           description: '',
           images: [],
         }}
-        onSubmit={form => submitForm({...form, location})}
+        onSubmit={(form, resetFn) => submitForm({...form, location}, resetFn)}
         validationSchema={validationSchema}
       >
         <FormImagePicker name='images' />
