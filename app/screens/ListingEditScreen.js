@@ -35,7 +35,7 @@ const validationSchema = Yup.object({
   images: Yup.array().min(1, 'Please select at least one image.'),
 })
 
-const ListingEditScreen = () => {
+const ListingEditScreen = ({ navigation }) => {
   const location = useLocation();
   const { error, request: createListing } = useApi(
     listingsApi.createListing
@@ -43,6 +43,11 @@ const ListingEditScreen = () => {
 
   if (error)
     Alert.alert('Error', 'Listing was unable to be created');
+
+  const submitForm = (data) => {
+    createListing(data)
+      .then(() => navigation.navigate('Upload'));
+  }
 
   return (
     <Screen style={styles.container}>
@@ -54,7 +59,7 @@ const ListingEditScreen = () => {
           description: '',
           images: [],
         }}
-        onSubmit={form => createListing({...form, location})}
+        onSubmit={form => submitForm({...form, location})}
         validationSchema={validationSchema}
       >
         <FormImagePicker name='images' />
