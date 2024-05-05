@@ -42,10 +42,10 @@ const ListingEditScreen = ({ navigation }) => {
   )
 
   if (error)
-    Alert.alert('Error', 'Listing was unable to be created');
+    Alert.alert('Error', 'Could not save the listing');
 
-  const submitForm = async (data, resetFn) => {
-    await createListing(data);
+  const handleSubmit = async (listing, resetFn) => {
+    await createListing({ ...listing, location });
 
     if (!error) {
       navigation.navigate('Upload');
@@ -63,7 +63,7 @@ const ListingEditScreen = ({ navigation }) => {
           description: '',
           images: [],
         }}
-        onSubmit={(form, resetFn) => submitForm({...form, location}, resetFn)}
+        onSubmit={(form, resetFn) => handleSubmit(form, resetFn)}
         validationSchema={validationSchema}
       >
         <FormImagePicker name='images' />

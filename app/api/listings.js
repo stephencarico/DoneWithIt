@@ -27,6 +27,7 @@ const addListing = (listing) => {
     headers: {
       'Content-Type': 'multipart/form-data'
     },
+    // axios func not available in React Native expo
     onUploadProgress: eventProgress => console.log(eventProgress.loaded)
   }
 
