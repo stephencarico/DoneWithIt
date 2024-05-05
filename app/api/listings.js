@@ -7,29 +7,20 @@ const getListings = () => client.get(endpoint);
 const addListing = (listing) => {
   const data = new FormData();
 
-  const listingKeysArr = Object.keys(listing);
-  listingKeysArr.forEach((key) => {
-    switch (key) {
-      case 'images':
-        listing['images'].forEach((image) => {
-          const name = image.split('\\').pop().split('/').pop();
-          data.append('images', {
-            name,
-            type: 'image/jpeg',
-            uri: image
-          })
-        });
-        break;
-      case 'category':
-        data.append('categoryId', listing['category'].value);
-        break;
-      case 'location':
-        data.append('location', JSON.stringify(listing['location']));
-        break;
-      default:
-        data.append(key, listing[key]);
-    }
+  data.append('title', listing.title);
+  data.append('price', listing.price);
+  data.append('categoryId', listing.category.value);
+  data.append('description', listing.description);
+  listing.images.forEach((image) => {
+    const name = image.split('\\').pop().split('/').pop();
+    data.append('images', {
+      name,
+      type: 'image/jpeg',
+      uri: image
+    })
   });
+  if (listing.location)
+    data.append('location', JSON.stringify(listing.location));
 
   const config = {
     // apisauce no longer automatically sets the Content-Type
@@ -43,6 +34,6 @@ const addListing = (listing) => {
 }
 
 export default {
+  addListing,
   getListings,
-  addListing
 }
