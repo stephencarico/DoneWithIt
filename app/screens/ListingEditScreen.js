@@ -41,13 +41,13 @@ const ListingEditScreen = () => {
   const location = useLocation();
   const [uploadVisible, setUploadVisible] = useState(false);
 
-  const handleSubmit = async (listing, resetFn) => {
+  const handleSubmit = async (listing, { resetForm }) => {
     const result = await listingsApi.addListing({ ...listing, location });
     if (!result.ok) return alert('Could not save the listing');
 
     setUploadVisible(true);
     setTimeout(() => {
-      resetFn();
+      resetForm();
       setUploadVisible(false);
     }, 1000)
   }
@@ -63,7 +63,7 @@ const ListingEditScreen = () => {
           description: '',
           images: [],
         }}
-        onSubmit={(form, resetFn) => handleSubmit(form, resetFn)}
+        onSubmit={handleSubmit}
         validationSchema={validationSchema}
       >
         <FormImagePicker name='images' />
