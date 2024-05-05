@@ -2,7 +2,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import { MaterialCommunityIcons } from '@expo/vector-icons'
 
 import FeedNavigator from './FeedNavigator';
-import ListingNavigator from './ListingNavigator';
+import ListingEditScreen from '../screens/ListingEditScreen';
 import AccountNavigator from './AccountNavigator';
 import NewListingButton from './NewListingButton';
 
@@ -22,7 +22,7 @@ const AppNavigator = () => (
     />
     <Tab.Screen
       name="Listing"
-      component={ListingNavigator}
+      component={ListingEditScreen}
       options={{
         headerShown: false,
         tabBarButton: ({ onPress }) => <NewListingButton onPress={onPress} />

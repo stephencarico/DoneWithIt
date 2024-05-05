@@ -14,6 +14,8 @@ import useLocation from '../hooks/useLocation'
 import colors from '../config/colors'
 import useApi from '../hooks/useApi'
 import listingsApi from '../api/listings'
+import { useState } from 'react'
+import UploadScreen from './UploadScreen'
 
 const categories = [
   { label: 'Furniture', icon: 'floor-lamp', backgroundColor: '#fc5c65', value: 1 },
@@ -35,26 +37,24 @@ const validationSchema = Yup.object({
   images: Yup.array().min(1, 'Please select at least one image.'),
 })
 
-const ListingEditScreen = ({ navigation }) => {
+const ListingEditScreen = () => {
   const location = useLocation();
-  const { error, request: createListing } = useApi(
-    listingsApi.addListing
-  )
-
-  if (error)
-    Alert.alert('Error', 'Could not save the listing');
+  const [uploadVisible, setUploadVisible] = useState(false);
 
   const handleSubmit = async (listing, resetFn) => {
-    await createListing({ ...listing, location });
+    const result = await listingsApi.addListing({ ...listing, location });
+    if (!result.ok) return alert('Could not save the listing');
 
-    if (!error) {
-      navigation.navigate('Upload');
+    setUploadVisible(true);
+    setTimeout(() => {
       resetFn();
-    }
+      setUploadVisible(false);
+    }, 1000)
   }
 
   return (
     <Screen style={styles.container}>
+      <UploadScreen visible={uploadVisible} />
       <AppForm
         initialValues={{
           title: '',
