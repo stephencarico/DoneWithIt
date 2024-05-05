@@ -10,10 +10,7 @@ function UploadScreen({ visible }) {
           autoPlay
           loop={false}
           source={require('../assets/animations/done.json')}
-          style={{
-            width: '50%',
-            height: '50%',
-          }}
+          style={styles.animation}
         />
       </View>
     </Modal>
@@ -21,9 +18,14 @@ function UploadScreen({ visible }) {
 }
 
 const styles = StyleSheet.create({
+  animation: {
+    width: 150,
+    height: 150,
+  },
   screen: {
     justifyContent: 'center',
     alignItems: 'center',
+    flex: 1,
   },
 })
 
