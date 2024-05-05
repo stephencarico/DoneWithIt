@@ -38,18 +38,19 @@ const validationSchema = Yup.object({
 const ListingEditScreen = ({ navigation }) => {
   const location = useLocation();
   const { error, request: createListing } = useApi(
-    listingsApi.createListing
+    listingsApi.addListing
   )
 
   if (error)
     Alert.alert('Error', 'Listing was unable to be created');
 
-  const submitForm = (data, resetFn) => {
-    createListing(data)
-      .then(() => {
-        navigation.navigate('Upload');
-        resetFn();
-      });
+  const submitForm = async (data, resetFn) => {
+    await createListing(data);
+
+    if (!error) {
+      navigation.navigate('Upload');
+      resetFn();
+    }
   }
 
   return (

@@ -4,7 +4,7 @@ const endpoint = '/listings'
 
 const getListings = () => client.get(endpoint);
 
-const createListing = (listing) => {
+const addListing = (listing) => {
   const data = new FormData();
 
   const listingKeysArr = Object.keys(listing);
@@ -44,5 +44,5 @@ const createListing = (listing) => {
 
 export default {
   getListings,
-  createListing
+  addListing
 }
