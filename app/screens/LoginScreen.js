@@ -1,26 +1,37 @@
 import { StyleSheet, Image } from 'react-native'
-import React from 'react'
+import React, { useState } from 'react'
 import * as Yup from 'yup'
 
 import Screen from '../components/Screen'
-import { AppForm, AppFormField, SubmitButton } from '../components/forms'
-import routes from '../navigation/routes'
+import { AppForm, AppFormField, ErrorMessage, SubmitButton } from '../components/forms'
+import authApi from '../api/auth'
 
 const validationSchema = Yup.object().shape({
   email: Yup.string().required().email().label('Email'),
   password: Yup.string().required().min(4).label('Password')
 })
 
-const LoginScreen = ({ navigation }) => {
+const LoginScreen = (props) => {
+  const [loginFailed, setLoginFailed] = useState(false);
+
+  const handleSubmit = async ({ email, password }) => {
+    const result = await authApi.login(email, password);
+    if (!result.ok) return setLoginFailed(true);
+
+    setLoginFailed(false);
+    console.log(result.data);
+  }
+
   return (
     <Screen style={styles.container}>
       <Image source={require('../assets/logo-red.png')} style={styles.logo} />
 
       <AppForm
         initialValues={{ email: '', password: '' }}
-        onSubmit={() => navigation.navigate(routes.FEED)}
+        onSubmit={handleSubmit}
         validationSchema={validationSchema}
       >
+        <ErrorMessage error="Invalid email and/or password." visible={loginFailed} />
         <AppFormField
           autoCapitalize='none'
           autoCorrect={false}
