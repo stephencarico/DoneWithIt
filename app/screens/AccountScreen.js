@@ -8,6 +8,7 @@ import { ListItem, ListItemSeparator } from '../components/lists'
 import colors from '../config/colors'
 import routes from '../navigation/routes'
 import AuthContext from '../auth/context'
+import authStorage from '../auth/storage'
 
 const menuItems = [
   {
@@ -30,6 +31,11 @@ const menuItems = [
 export default function AccountScreen() {
   const navigation = useNavigation();
   const { user, setUser } = useContext(AuthContext);
+
+  const handleLogout = () => {
+    setUser(null);
+    authStorage.removeToken();
+  }
 
   return (
     <Screen style={styles.screen}>
@@ -67,7 +73,7 @@ export default function AccountScreen() {
             backgroundColor={colors.warning}
           />
         }
-        onPress={() => setUser(null)}
+        onPress={handleLogout}
       />
     </Screen>
   )

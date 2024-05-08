@@ -33,6 +33,9 @@
         "projectId": "8df997c9-77e7-412a-be2b-6cf8f42e7f2a"
       }
     },
-    "owner": "stephen.creek"
+    "owner": "stephen.creek",
+    "plugins": [
+      "expo-secure-store"
+    ]
   }
 }
