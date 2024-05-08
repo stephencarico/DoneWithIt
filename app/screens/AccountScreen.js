@@ -29,7 +29,7 @@ const menuItems = [
 
 export default function AccountScreen() {
   const navigation = useNavigation();
-  const { user } = useContext(AuthContext);
+  const { user, setUser } = useContext(AuthContext);
 
   return (
     <Screen style={styles.screen}>
@@ -67,6 +67,7 @@ export default function AccountScreen() {
             backgroundColor={colors.warning}
           />
         }
+        onPress={() => setUser(null)}
       />
     </Screen>
   )
