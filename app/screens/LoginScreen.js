@@ -1,6 +1,7 @@
 import { StyleSheet, Image } from 'react-native'
 import React, { useState } from 'react'
 import * as Yup from 'yup'
+import jwtDecode from 'jwt-decode'
 
 import Screen from '../components/Screen'
 import { AppForm, AppFormField, ErrorMessage, SubmitButton } from '../components/forms'
@@ -19,7 +20,8 @@ const LoginScreen = (props) => {
     if (!result.ok) return setLoginFailed(true);
 
     setLoginFailed(false);
-    console.log(result.data);
+    const user = jwtDecode(result.data);
+    console.log(user);
   }
 
   return (
