@@ -9,7 +9,7 @@ import { useState } from 'react';
 import AuthContext from './app/auth/context';
 
 export default function App() {
-  const [user, setUser] = useState({});
+  const [user, setUser] = useState();
 
   return (
     <AuthContext.Provider value={{ user, setUser }}>
