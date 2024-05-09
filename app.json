@@ -1,41 +1,37 @@
 {
-  "expo": {
-    "name": "DoneWithIt",
-    "slug": "donewithit",
-    "version": "1.0.0",
-    "orientation": "default",
-    "icon": "./app/assets/icon.png",
-    "userInterfaceStyle": "light",
-    "splash": {
-      "image": "./app/assets/splash.png",
-      "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
-    },
-    "assetBundlePatterns": [
-      "**/*"
-    ],
-    "ios": {
-      "supportsTablet": true,
-      "bundleIdentifier": "com.stephen.creek.donewithit"
-    },
-    "android": {
-      "adaptiveIcon": {
-        "foregroundImage": "./app/assets/adaptive-icon.png",
-        "backgroundColor": "#ffffff"
-      },
-      "package": "com.stephen.creek.donewithit"
-    },
-    "web": {
-      "favicon": "./app/assets/favicon.png"
-    },
-    "extra": {
-      "eas": {
-        "projectId": "8df997c9-77e7-412a-be2b-6cf8f42e7f2a"
-      }
-    },
-    "owner": "stephen.creek",
-    "plugins": [
-      "expo-secure-store"
-    ]
-  }
+    "expo": {
+        "name": "DoneWithIt",
+        "slug": "donewithit",
+        "version": "1.0.0",
+        "orientation": "default",
+        "icon": "./app/assets/icon.png",
+        "userInterfaceStyle": "light",
+        "splash": {
+            "image": "./app/assets/splash.png",
+            "resizeMode": "cover",
+            "backgroundColor": "#e63c4b"
+        },
+        "assetBundlePatterns": ["**/*"],
+        "ios": {
+            "supportsTablet": true,
+            "bundleIdentifier": "com.stephen.creek.donewithit"
+        },
+        "android": {
+            "adaptiveIcon": {
+                "foregroundImage": "./app/assets/adaptive-icon.png",
+                "backgroundColor": "#ffffff"
+            },
+            "package": "com.stephen.creek.donewithit"
+        },
+        "web": {
+            "favicon": "./app/assets/favicon.png"
+        },
+        "extra": {
+            "eas": {
+                "projectId": "8df997c9-77e7-412a-be2b-6cf8f42e7f2a"
+            }
+        },
+        "owner": "stephen.creek",
+        "plugins": ["expo-secure-store"]
+    }
 }
