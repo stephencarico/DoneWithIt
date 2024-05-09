@@ -42,42 +42,44 @@ const RegisterScreen = () => {
   };
 
   return (
-    <Screen style={styles.container}>
+    <>
       <ActivityIndicator visible={registerApi.loading || loginApi.loading} />
-      <AppForm
-        initialValues={{ name: '', email: '', password: '' }}
-        onSubmit={handleSubmit}
-        validationSchema={registrationSchema}
-        >
-        {error && <Text style={styles.error}>{error}</Text>}
-        <AppFormField
-          name='name'
-          autoCorrect={false}
-          icon='account'
-          placeholder='Name'
-          textContentType='name'
-        />
-        <AppFormField
-          autoCapitalize='none'
-          autoCorrect={false}
-          icon='email'
-          keyboardType='email-address'
-          name='email'
-          placeholder='Email'
-          textContentType='emailAddress'
-        />
-        <AppFormField
-          autoCapitalize='none'
-          autoCorrect={false}
-          icon='lock'
-          name='password'
-          placeholder='password'
-          secureTextEntry
-          textContentType='password'
-        />
-        <SubmitButton title='Register' />
-      </AppForm>
-    </Screen>
+      <Screen style={styles.container}>
+        <AppForm
+          initialValues={{ name: '', email: '', password: '' }}
+          onSubmit={handleSubmit}
+          validationSchema={registrationSchema}
+          >
+          {error && <Text style={styles.error}>{error}</Text>}
+          <AppFormField
+            name='name'
+            autoCorrect={false}
+            icon='account'
+            placeholder='Name'
+            textContentType='name'
+          />
+          <AppFormField
+            autoCapitalize='none'
+            autoCorrect={false}
+            icon='email'
+            keyboardType='email-address'
+            name='email'
+            placeholder='Email'
+            textContentType='emailAddress'
+          />
+          <AppFormField
+            autoCapitalize='none'
+            autoCorrect={false}
+            icon='lock'
+            name='password'
+            placeholder='password'
+            secureTextEntry
+            textContentType='password'
+          />
+          <SubmitButton title='Register' />
+        </AppForm>
+      </Screen>
+    </>
   )
 }
 
