@@ -1,9 +1,11 @@
-import { StyleSheet } from 'react-native'
-import React from 'react'
+import { StyleSheet, Text } from 'react-native'
+import React, { useState } from 'react'
 import * as Yup from 'yup'
 
 import Screen from '../components/Screen'
 import { AppForm, AppFormField, SubmitButton } from '../components/forms'
+import authApi from '../api/auth'
+import useAuth from '../auth/useAuth'
 
 const registrationSchema = Yup.object({
   name: Yup.string().required().label('Name'),
@@ -12,11 +14,34 @@ const registrationSchema = Yup.object({
 })
 
 const RegisterScreen = () => {
+  const auth = useAuth();
+  const [error, setError] = useState();
+
+  const handleSubmit = async (userInfo) => {
+    setError(null);
+    const result = await authApi.register(userInfo);
+    if (!result.ok) {
+      if (!result.data) setError(result.data.error);
+      else {
+        setError('An unexpected error occurred.');
+        console.log(result);
+      }
+      return;
+    }
+
+    const { data: authToken } = await authApi.login(
+      userInfo.email,
+      userInfo.password,
+    )
+    auth.logIn(authToken);
+  };
+
   return (
     <Screen style={styles.container}>
+      {error && <Text style={styles.error}>{error}</Text>}
       <AppForm
         initialValues={{ name: '', email: '', password: '' }}
-        onSubmit={obj => console.log(obj)}
+        onSubmit={handleSubmit}
         validationSchema={registrationSchema}
       >
         <AppFormField
@@ -53,6 +78,10 @@ const RegisterScreen = () => {
 export default RegisterScreen
 
 const styles = StyleSheet.create({
+  error: {
+    color: 'red',
+    fontWeight: '500'
+  },
   container: {
     padding: 10
   }
