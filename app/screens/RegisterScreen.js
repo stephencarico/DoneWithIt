@@ -3,9 +3,12 @@ import React, { useState } from 'react'
 import * as Yup from 'yup'
 
 import Screen from '../components/Screen'
+import ActivityIndicator from '../components/ActivityIndicator'
 import { AppForm, AppFormField, SubmitButton } from '../components/forms'
 import authApi from '../api/auth'
+import usersApi from '../api/users'
 import useAuth from '../auth/useAuth'
+import useApi from '../hooks/useApi'
 
 const registrationSchema = Yup.object({
   name: Yup.string().required().label('Name'),
@@ -14,14 +17,16 @@ const registrationSchema = Yup.object({
 })
 
 const RegisterScreen = () => {
+  const registerApi = useApi(usersApi.register);
+  const loginApi = useApi(authApi.login);
   const auth = useAuth();
   const [error, setError] = useState();
 
   const handleSubmit = async (userInfo) => {
     setError(null);
-    const result = await authApi.register(userInfo);
+    const result = await registerApi.request(userInfo);
     if (!result.ok) {
-      if (!result.data) setError(result.data.error);
+      if (result.data) setError(result.data.error);
       else {
         setError('An unexpected error occurred.');
         console.log(result);
@@ -29,7 +34,7 @@ const RegisterScreen = () => {
       return;
     }
 
-    const { data: authToken } = await authApi.login(
+    const { data: authToken } = await loginApi.request(
       userInfo.email,
       userInfo.password,
     )
@@ -70,6 +75,7 @@ const RegisterScreen = () => {
           textContentType='password'
         />
         <SubmitButton title='Register' />
+        <ActivityIndicator visible={registerApi.loading || loginApi.loading} />
       </AppForm>
     </Screen>
   )

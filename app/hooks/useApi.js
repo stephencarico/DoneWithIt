@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 export default useApi = (apiFunc) => {
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
   const [data, setData] = useState([]);
   const [error, setError] = useState(false);
 
@@ -10,10 +10,9 @@ export default useApi = (apiFunc) => {
     const response = await apiFunc(...args);
     setLoading(false);
 
-    if (!response.ok) return setError(true);
-
-    setError(false);
-    return setData(response.data);
+    setError(!response.ok);
+    setData(response.data);
+    return response;
   }
 
   return { data, loading, error, request };
