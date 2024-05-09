@@ -43,12 +43,13 @@ const RegisterScreen = () => {
 
   return (
     <Screen style={styles.container}>
-      {error && <Text style={styles.error}>{error}</Text>}
+      <ActivityIndicator visible={registerApi.loading || loginApi.loading} />
       <AppForm
         initialValues={{ name: '', email: '', password: '' }}
         onSubmit={handleSubmit}
         validationSchema={registrationSchema}
-      >
+        >
+        {error && <Text style={styles.error}>{error}</Text>}
         <AppFormField
           name='name'
           autoCorrect={false}
@@ -75,7 +76,6 @@ const RegisterScreen = () => {
           textContentType='password'
         />
         <SubmitButton title='Register' />
-        <ActivityIndicator visible={registerApi.loading || loginApi.loading} />
       </AppForm>
     </Screen>
   )
