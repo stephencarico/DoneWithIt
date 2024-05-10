@@ -8,6 +8,7 @@ import FeedNavigator from './FeedNavigator';
 import ListingEditScreen from '../screens/ListingEditScreen';
 import NewListingButton from './NewListingButton';
 import { useEffect } from 'react';
+import navigation from './rootNavigation';
 
 const Tab = createBottomTabNavigator();
 
@@ -26,6 +27,10 @@ const AppNavigator = () => {
 
   useEffect(() => {
     registerForPushNotifications();
+
+    Notifications.addNotificationReceivedListener(() => {
+      navigation.navigate('Account');
+    });
   }, []);
 
   return (
@@ -49,7 +54,7 @@ const AppNavigator = () => {
       }}
     />
     <Tab.Screen
-      name="AccountHome"
+      name="Account"
       component={AccountNavigator}
       options={{
         headerShown: false,
