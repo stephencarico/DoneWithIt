@@ -2,9 +2,10 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import { MaterialCommunityIcons } from '@expo/vector-icons'
 import * as Notifications from 'expo-notifications';
 
+import AccountNavigator from './AccountNavigator';
+import expoPushTokensApi from '../api/expoPushTokens';
 import FeedNavigator from './FeedNavigator';
 import ListingEditScreen from '../screens/ListingEditScreen';
-import AccountNavigator from './AccountNavigator';
 import NewListingButton from './NewListingButton';
 import { useEffect } from 'react';
 
@@ -17,7 +18,7 @@ const AppNavigator = () => {
 
     try {
       const token = await Notifications.getExpoPushTokenAsync();
-      console.log(token.data);
+      expoPushTokensApi.register(token.data);
     } catch (error) {
       console.log('Error getting a push token', error);
     }
