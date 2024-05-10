@@ -18,13 +18,10 @@
         },
         "android": {
             "adaptiveIcon": {
-                "foregroundImage": "./app/assets/adaptive-icon.png",
+                "foregroundImage": "./app/assets/icon.png",
                 "backgroundColor": "#ffffff"
             },
             "package": "com.stephen.creek.donewithit"
-        },
-        "web": {
-            "favicon": "./app/assets/favicon.png"
         },
         "extra": {
             "eas": {
